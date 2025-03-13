@@ -23,7 +23,7 @@ function App() {
     >
       <PhoneInputWrapper
         phoneValues={phoneValues}
-        PreferredCountryCodes={["91", "1", "971"]}
+        PreferredCountryCodes={["91", "971"]}
         handlePhoneChange={(e) => {
           console.log(e);
           setPhoneValues(e);

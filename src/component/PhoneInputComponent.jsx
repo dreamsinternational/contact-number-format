@@ -261,7 +261,9 @@ background-color: #F3F4F6;
 cursor: pointer; 
 }
 .selectedCountryCss{
-
+background-color: transparent;
+border:none;
+width:100%;
 display: flex; 
 padding-top: 0.375rem;
 padding-bottom: 0.375rem; 
@@ -304,6 +306,9 @@ margin:0px;
 padding:0px;
 }
 .liCss{
+background-color: transparent;
+border:none;
+width:100%;
 display: flex; 
 padding-top: 0.375rem;
 padding-bottom: 0.375rem; 
@@ -312,6 +317,7 @@ padding-right: 0.5rem;
 gap: 0.5rem; 
 align-items: center; 
 cursor: pointer; 
+
 }
 .liCss:hover {
  background-color: #D1D5DB; 
@@ -353,7 +359,7 @@ outline: none;
             />
             <ul className={ulCss}>
               {PreferredCountries.map((country) => (
-                <li
+                <button
                   className={
                     selectedCountry.code === country.code
                       ? selectedCountryCss
@@ -375,11 +381,11 @@ outline: none;
                     />
                   )}
                   {country.name} ({country.dialingCode})
-                </li>
+                </button>
               ))}
               <hr />
               {filteredCountries.map((country) => (
-                <li
+                <button
                   className={
                     selectedCountry.code === country.code
                       ? selectedCountryCss
@@ -401,7 +407,7 @@ outline: none;
                     />
                   )}
                   {country.name} ({country.dialingCode})
-                </li>
+                </button>
               ))}
             </ul>
           </div>
