@@ -14,6 +14,7 @@ const arrow = (
   </svg>
 );
 const PhoneInputComponent = ({
+  phoneValues,
   handlePhoneChange = () => {},
   PreferredCountryCodes = [],
   defaultCountryCode,
@@ -47,12 +48,14 @@ const PhoneInputComponent = ({
   const [selectedCountry, setSelectedCountry] = useState(defSelectedCountry);
 
   const [phoneData, setPhoneData] = useState({
-    countryCode: defSelectedCountry?.dialingCode,
-    number: "",
-    tempCountryCode: defSelectedCountry?.dialingCode,
-    FormattedNumber: "",
-    countryCodeAndNumber: defSelectedCountry?.dialingCode + "",
-    countryCodeAndFormattedNumber: defSelectedCountry?.dialingCode + "",
+    countryCode: selectedCountry?.dialingCode,
+    number: phoneValues?.number || "",
+    tempCountryCode: selectedCountry?.dialingCode,
+    FormattedNumber: phoneValues?.number
+      ? formatPhoneNumber(phoneValues?.number, selectedCountry)
+      : "",
+    countryCodeAndNumber: selectedCountry?.dialingCode + "",
+    countryCodeAndFormattedNumber: selectedCountry?.dialingCode + "",
     selectedCountry: selectedCountry,
   });
 
