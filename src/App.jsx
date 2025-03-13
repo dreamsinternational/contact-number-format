@@ -34,6 +34,16 @@ function App() {
       />
       <button onClick={handleSubmit}>Submit</button>
       {error && <p>{error}</p>}{" "}
+      {/* Below code is for converting combined phoneCode and number to seperated keys */}
+      {/* <PhoneInputWrapper
+        phoneValues={{
+          number: "911231231233",
+          countryCode: "",
+          tempCountryCode: "",
+        }}
+        CombinedToSeperate={true}
+        handlePhoneChange={(e) => console.log(e)}
+      /> */}
     </div>
   );
 }

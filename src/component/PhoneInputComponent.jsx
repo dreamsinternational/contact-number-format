@@ -18,9 +18,9 @@ const PhoneInputComponent = ({
   handlePhoneChange = () => {},
   PreferredCountryCodes = [],
   defaultCountryCode,
-  setError,
+  setError = () => {},
   error,
-
+  CombinedToSeperate = false,
   dropdownArrow = arrow,
   containerCss = "containerCss",
   selectedFlagCss = "selectedFlagCss",
@@ -35,6 +35,11 @@ const PhoneInputComponent = ({
 }) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
+  useEffect(() => {
+    if (CombinedToSeperate) {
+      handleInputChange({ target: { value: phoneValues?.number } });
+    }
+  }, [CombinedToSeperate]);
   const defSelectedCountry = (defaultCountryCode &&
     jsonPhoneData?.find(
       (data) => data?.dialingCode === defaultCountryCode
@@ -45,6 +50,7 @@ const PhoneInputComponent = ({
     dialingCode: "91",
     phoneNumberFormat: "0##########",
   };
+
   const [selectedCountry, setSelectedCountry] = useState(defSelectedCountry);
 
   const [phoneData, setPhoneData] = useState({
@@ -86,9 +92,9 @@ const PhoneInputComponent = ({
     }
   };
 
-  useEffect(() => {
-    !defaultCountryCode && getCountryCode();
-  }, []);
+  // useEffect(() => {
+  //   !defaultCountryCode && getCountryCode();
+  // }, []);
   const filteredCountries = jsonPhoneData
     .filter((country) => !PreferredCountryCodes.includes(country.dialingCode))
     .filter(
@@ -236,6 +242,7 @@ const PhoneInputComponent = ({
     }
     setDropdownOpen(false);
   };
+  if (CombinedToSeperate) return;
   return (
     <>
       <style>

@@ -8,6 +8,7 @@ function PhoneInputWrapper({
   PreferredCountryCodes,
   defaultCountryCode,
   handlePhoneChange,
+  CombinedToSeperate,
 }) {
   return (
     <PhoneInputComponent
@@ -17,6 +18,7 @@ function PhoneInputWrapper({
       error={error}
       defaultCountryCode={defaultCountryCode}
       setError={setError}
+      CombinedToSeperate={CombinedToSeperate}
       // containerCss="flex relative border border-gray-300 rounded-lg h-[48px]"
       // selectedFlagCss="border border-gray-300 rounded-lg flag-div flex items-center cursor-pointer px-2 bg-gray-100"
       // selectedCountryCss="flex gap-2 px-2 py-1.5 cursor-pointer items-center bg-gray-200"
