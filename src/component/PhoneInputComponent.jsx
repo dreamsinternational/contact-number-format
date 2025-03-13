@@ -26,7 +26,7 @@ const PhoneInputComponent = ({
   selectedCountryCss = "selectedCountryCss",
   dropdownCss = "dropdownCss",
   searchInputCss = "searchInputCss ",
-  ulCss = "",
+  ulCss = "ulCss",
   PreferredliCss = "",
   filteredliCss = "",
   liCss = "liCss",
@@ -148,7 +148,6 @@ const PhoneInputComponent = ({
       ?.filter((data) => value.startsWith(data?.dialingCode))
       .sort((a, b) => b.dialingCode.length - a.dialingCode.length)
       .sort((a, b) => a.order - b.order)[0];
-    console.log(matchedCode);
     if (matchedCode) {
       setSelectedCountry(matchedCode);
       const phoneCode = matchedCode?.dialingCode;
@@ -243,9 +242,8 @@ const PhoneInputComponent = ({
         {
         display: flex; 
 position: relative; 
-border-radius: 0.5rem; 
-border-width: 1px; 
-border-color: #D1D5DB; 
+border:1px solid #D1D5DB;
+border-radius: 0.5rem;
 height: 3rem; 
         }
 .selectedFlagCss{
@@ -298,6 +296,10 @@ border-width: 1px;
 border-color: #9CA3AF; 
 width: 91.666667%; 
 }
+.ulCss{
+margin:0px;
+padding:0px;
+}
 .liCss{
 display: flex; 
 padding-top: 0.375rem;
@@ -315,8 +317,13 @@ cursor: pointer;
  border-width: 0; 
 width: 100%; 
 height: 100%; 
-background-color: transparent; 
+background-color: transparent;
+border 
  }
+.inputCss:focus{
+
+outline: none;
+}
         
       `}
       </style>

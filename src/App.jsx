@@ -1,7 +1,6 @@
 import React from "react";
 import { useState } from "react";
 import PhoneInputWrapper from "./component/PhoneInputWrapper";
-import { PhoneInputComponent } from "phoneinputomcustom";
 
 function App() {
   const [phoneValues, setPhoneValues] = useState({
@@ -12,7 +11,6 @@ function App() {
   const [error, setError] = useState(null);
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(phoneValues, error);
     if (!phoneValues.number) return setError("Please enter phone number");
   };
 
@@ -23,7 +21,19 @@ function App() {
       }}
       className=""
     >
-      <PhoneInputComponent phoneValues={phoneValues} />
+      <PhoneInputWrapper
+        phoneValues={phoneValues}
+        PreferredCountryCodes={["91", "1", "971"]}
+        handlePhoneChange={(e) => {
+          console.log(e);
+          setPhoneValues(e);
+        }}
+        error={error}
+        defaultCountryCode="91"
+        setError={setError}
+      />
+      <button onClick={handleSubmit}>Submit</button>
+      {error && <p>{error}</p>}{" "}
     </div>
   );
 }
