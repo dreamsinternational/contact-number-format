@@ -64,6 +64,19 @@ const PhoneInputComponent = ({
     countryCodeAndFormattedNumber: selectedCountry?.dialingCode + "",
     selectedCountry: selectedCountry,
   });
+  useEffect(() => {
+    setPhoneData({
+      countryCode: selectedCountry?.dialingCode,
+      number: phoneValues?.editNumber || "",
+      tempCountryCode: selectedCountry?.dialingCode,
+      FormattedNumber: phoneValues?.editNumber
+        ? formatPhoneNumber(phoneValues?.editNumber, selectedCountry)
+        : "",
+      countryCodeAndNumber: selectedCountry?.dialingCode + "",
+      countryCodeAndFormattedNumber: selectedCountry?.dialingCode + "",
+      selectedCountry: selectedCountry,
+    });
+  }, [phoneValues?.editNumber]);
 
   const getCountryCode = async () => {
     try {
@@ -92,9 +105,9 @@ const PhoneInputComponent = ({
     }
   };
 
-  // useEffect(() => {
-  //   !defaultCountryCode && getCountryCode();
-  // }, []);
+  useEffect(() => {
+    !defaultCountryCode && getCountryCode();
+  }, []);
   const filteredCountries = jsonPhoneData
     .filter((country) => !PreferredCountryCodes.includes(country.dialingCode))
     .filter(

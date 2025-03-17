@@ -7,6 +7,7 @@ function App() {
     number: "",
     countryCode: "91",
     tempCountryCode: "91",
+    editNumber: false,
   });
   const [error, setError] = useState(null);
   const handleSubmit = (e) => {
