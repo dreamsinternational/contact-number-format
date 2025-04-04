@@ -65,6 +65,8 @@ const PhoneInputComponent = ({
     selectedCountry: selectedCountry,
   });
   useEffect(() => {
+        if (!phoneValues?.editNumber) return;
+
     setPhoneData({
       countryCode: selectedCountry?.dialingCode,
       number: phoneValues?.editNumber || "",
