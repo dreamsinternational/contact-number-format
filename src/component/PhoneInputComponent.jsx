@@ -64,21 +64,27 @@ const PhoneInputComponent = ({
     countryCodeAndFormattedNumber: selectedCountry?.dialingCode + "",
     selectedCountry: selectedCountry,
   });
-  useEffect(() => {
-        if (!phoneValues?.editNumber) return;
-
+ useEffect(() => {
+    if (!phoneValues?.editNumber) return;
+    const selCountry = jsonPhoneData?.find(
+      (data) => data?.dialingCode === phoneValues?.editCode
+    );
+    const cCode = phoneValues?.editCode
+      ? selCountry?.dialingCode
+      : selectedCountry?.dialingCode;
     setPhoneData({
-      countryCode: selectedCountry?.dialingCode,
+      countryCode: cCode,
       number: phoneValues?.editNumber || "",
-      tempCountryCode: selectedCountry?.dialingCode,
+      tempCountryCode: cCode,
       FormattedNumber: phoneValues?.editNumber
         ? formatPhoneNumber(phoneValues?.editNumber, selectedCountry)
         : "",
-      countryCodeAndNumber: selectedCountry?.dialingCode + "",
-      countryCodeAndFormattedNumber: selectedCountry?.dialingCode + "",
+      countryCodeAndNumber: cCode + "",
+      countryCodeAndFormattedNumber: cCode + "",
       selectedCountry: selectedCountry,
     });
-  }, [phoneValues?.editNumber]);
+    selCountry && setSelectedCountry(selCountry);
+  }, [phoneValues?.editNumber, phoneValues?.editCode]);
 
   const getCountryCode = async () => {
     try {
